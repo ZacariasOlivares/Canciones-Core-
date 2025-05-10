@@ -15,5 +15,6 @@
 		<p>Idioma : ${cancionActual.idioma}</p>
 		<p>Fecha de insercion     : ${cancionActual.fechaCreacion}</p>
 		<p>Fecha de actualizacion : ${cancionActual.fechaActualizacion}</p>
+		<a href="/canciones">Volver a lista de canciones</a>
 	</body>
 </html>
