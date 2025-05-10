@@ -13,7 +13,7 @@
 		<p>Album  : ${cancionActual.album}</p>
 		<p>Genero : ${cancionActual.genero}</p>
 		<p>Idioma : ${cancionActual.idioma}</p>
-		<p>Fecha de insercion     : ${cancionActual.fechaCreacion}</p>
+		<p>Fecha de creacion     : ${cancionActual.fechaCreacion}</p>
 		<p>Fecha de actualizacion : ${cancionActual.fechaActualizacion}</p>
 		<a href="/canciones">Volver a lista de canciones</a>
 	</body>
