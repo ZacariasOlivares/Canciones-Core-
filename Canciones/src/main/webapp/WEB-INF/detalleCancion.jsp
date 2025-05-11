@@ -8,8 +8,7 @@
 	</head>
 	<body>
 		<p>Titulo : ${cancionActual.titulo}</p>
-		<p>Autor  : ${cancionActual.autor}</p>
-		<p>Artista: ${cancionActual.artista}</p>
+		<p>Artista: ${cancionActual.artista.nombre} ${cancionActual.artista.apellido}</p>
 		<p>Album  : ${cancionActual.album}</p>
 		<p>Genero : ${cancionActual.genero}</p>
 		<p>Idioma : ${cancionActual.idioma}</p>

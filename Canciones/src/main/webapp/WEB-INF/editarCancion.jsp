@@ -18,15 +18,11 @@
                 <span><form:errors path="titulo"/></span>   
             </div>
             <div>
-                <form:label path="autor">Autor</form:label>
-                <form:input path="autor" type="text"/>
-                <span><form:errors path="autor"/></span>   
-
-            </div>
-            <div>
-                <form:label path="artista">Artista</form:label>
-                <form:input path="artista" type="text"/>
-                <span><form:errors path="artista"/></span>   
+            	<form:label path="artista">Artista</form:label>
+			    <form:select path="artista">
+			        <form:options items="${listaArtistas}" itemValue="id" itemLabel="nombre" />
+			    </form:select>
+			    <span><form:errors path="artista"/></span>   
             </div>
             <div>
                 <form:label path="album">Album</form:label>

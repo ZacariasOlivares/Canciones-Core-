@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>  
 <!DOCTYPE html>
 <html>
@@ -15,14 +16,14 @@
                 <span><form:errors path="titulo"/></span>   
             </div>
             <div>
-                <form:label path="autor">Autor</form:label>
-                <form:input path="autor"/>
-                <span><form:errors path="autor"/></span>   
-
-            </div>
-            <div>
                 <form:label path="artista">Artista</form:label>
-                <form:input path="artista"/>
+                <form:select path="artista">
+                    <c:forEach var="artista" items="${listaArtistas}">
+                    	<form:option value="${artista.id}">
+                        ${artista.nombre} ${artista.apellido}
+                    	</form:option>
+                    </c:forEach>
+                </form:select>
                 <span><form:errors path="artista"/></span>   
             </div>
             <div>
