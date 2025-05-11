@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.zacarias.modelos.Cancion;
 import com.zacarias.servicios.ServicioCanciones;
@@ -28,6 +28,7 @@ public class ControladorCanciones {
 		this.servicioCanciones = servicioCanciones;
 	}
 	
+	// Obtener cancion
 	@GetMapping("/canciones")
 	public String desplegarCanciones(Model modelo) {
 		List<Cancion> listaCanciones = this.servicioCanciones.obtenerTodasLasCanciones();
@@ -48,6 +49,7 @@ public class ControladorCanciones {
 		return "detalleCancion.jsp";
 	}
 	
+	// Agregar cancion
 	@GetMapping("/canciones/formulario/agregar")
 	public String formularioAgregarCancion(@ModelAttribute ("cancion") Cancion cancion ) {
 		return "agregarCancion.jsp";
@@ -64,5 +66,41 @@ public class ControladorCanciones {
 		
 		return "redirect:/canciones";
 	}
+	
+	// Actualizar cancion
+	@GetMapping("/canciones/formulario/editar/{idCancion}")
+	public String formularioEditarCancion(@ModelAttribute ("cancionActual") Cancion cancion,
+										  @PathVariable ("idCancion") Long id,
+										  Model modelo) {
+		Cancion cancionActual = this.servicioCanciones.obtenerCancionPorId(id);
+		modelo.addAttribute("cancionActual", cancionActual);
+		return "editarCancion.jsp";
+	}
+	
+	@PutMapping("/canciones/procesa/editar/{idCancion}")
+	public String procesarEditarCancion(@Valid @ModelAttribute("cancionActual") Cancion cancion,
+										BindingResult validaciones,
+										@PathVariable("idCancion") Long id,
+										Model modelo)
+										{
+		if (validaciones.hasErrors()) {
+			return "editarCancion.jsp";
+		}
+		// Obtener fecha de creacion
+		Cancion cancionActual = this.servicioCanciones.obtenerCancionPorId(id);
+		
+		// Set id y fecha de creacion
+		cancion.setId(id);
+		cancion.setFechaCreacion(cancionActual.getFechaCreacion());
+		
+		
+		this.servicioCanciones.actualizaCancion(cancion);
+		return "redirect:/canciones";
+	}
+	
+	
+	
+	
+	
 		
 }
