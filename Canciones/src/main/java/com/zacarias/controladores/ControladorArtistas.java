@@ -45,7 +45,7 @@ public class ControladorArtistas {
 		return "detalleArtista.jsp";
 	}
 	
-	@GetMapping("/artistas/formulario/agregar/{idArtista}")
+	@GetMapping("/artistas/formulario/agregar")
 	public String formularioAgregarArtista(@ModelAttribute("artista") Artista artista) {
 		return "agregarArtista.jsp";
 	}

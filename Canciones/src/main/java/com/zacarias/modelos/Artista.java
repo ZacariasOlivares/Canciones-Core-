@@ -18,6 +18,8 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "artistas")
@@ -26,10 +28,13 @@ public class Artista {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(min = 3, message = "Longitud minima de 3")
 	private String nombre;
 	
+	@Size(min = 3, message = "Longitud minima de 3")
 	private String apellido;
 	
+	@Size(min = 15, message = "Longitud minima de 15")
 	private String biografia;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -53,6 +58,13 @@ public class Artista {
 	protected void onUpdate() {
 		this.fechaActualizacion = new Date(); 
 	}
+	
+	// Para los select, no genera una columna en la bd
+	@Transient
+	public String getNombreCompleto() {
+	    return this.nombre + " " + this.apellido;
+	}
+	
 
 	// Constructor
 	public Artista() {

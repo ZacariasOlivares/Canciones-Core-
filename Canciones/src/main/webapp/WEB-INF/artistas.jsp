@@ -21,5 +21,8 @@
 		<a href="/canciones">
 			<button>Ir a canciones</button>
 		</a>
+		<a href="/artistas/formulario/agregar">
+			<button>Agregar artista</button>
+		</a>
     </body>
 </html>

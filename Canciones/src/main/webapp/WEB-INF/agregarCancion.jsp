@@ -20,7 +20,7 @@
                 <form:select path="artista">
                     <c:forEach var="artista" items="${listaArtistas}">
                     	<form:option value="${artista.id}">
-                        ${artista.nombre} ${artista.apellido}
+                        ${artista.nombreCompleto}
                     	</form:option>
                     </c:forEach>
                 </form:select>

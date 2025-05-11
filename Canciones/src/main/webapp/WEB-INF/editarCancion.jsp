@@ -20,7 +20,7 @@
             <div>
             	<form:label path="artista">Artista</form:label>
 			    <form:select path="artista">
-			        <form:options items="${listaArtistas}" itemValue="id" itemLabel="nombre" />
+			        <form:options items="${listaArtistas}" itemValue="id" itemLabel="nombreCompleto" />
 			    </form:select>
 			    <span><form:errors path="artista"/></span>   
             </div>
