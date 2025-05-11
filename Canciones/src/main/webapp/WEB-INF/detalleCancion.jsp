@@ -19,6 +19,10 @@
 		<a href="/canciones/formulario/editar/${cancionActual.id}">
 			<button>Editar Cancion</button>
 		</a>
+		<form action="/canciones/eliminar/${cancionActual.id}" method="POST">
+			<input type="hidden" name="_method" value="DELETE"/>
+			<button> Eliminar Cancion </button>
+		</form>
 		
 	</body>
 </html>
