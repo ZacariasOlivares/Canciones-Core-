@@ -81,10 +81,12 @@ public class ControladorCanciones {
 	
 	// Actualizar cancion
 	@GetMapping("/canciones/formulario/editar/{idCancion}")
-	public String formularioEditarCancion(@ModelAttribute ("cancionActual") Cancion cancion,
-										  @PathVariable ("idCancion") Long id,
+	public String formularioEditarCancion(@PathVariable ("idCancion") Long id,
 										  Model modelo) {
 		Cancion cancionActual = this.servicioCanciones.obtenerCancionPorId(id);
+		if (cancionActual == null) {
+			return "redirect:/canciones";
+		}
 		List<Artista> listaArtistas = this.servicioArtistas.obtenerTodosLosArtistas();
 		modelo.addAttribute("cancionActual", cancionActual);
 		modelo.addAttribute("listaArtistas", listaArtistas);
@@ -98,13 +100,16 @@ public class ControladorCanciones {
 										Model modelo)
 										{
 		if (validaciones.hasErrors()) {
+			cancion.setId(id);
+			List<Artista> listaArtistas = this.servicioArtistas.obtenerTodosLosArtistas();
+			modelo.addAttribute("listaArtistas", listaArtistas);
 			return "editarCancion.jsp";
 		}
 		// Obtener fecha de creacion
 		Cancion cancionActual = this.servicioCanciones.obtenerCancionPorId(id);
 		
 		// Set id y fecha de creacion
-		cancion.setId(id);
+		cancion.setId(cancionActual.getId());
 		cancion.setFechaCreacion(cancionActual.getFechaCreacion());
 		
 		
